@@ -1,0 +1,35 @@
+/*编辑页面样式*/
+body form {
+	maring: 0px;
+	padding: 0px;
+}
+/*查询和编辑样式*/
+.kTable {
+	border-top: 1px #b9d5f6 solid;
+	border-left: 1px #b9d5f6 solid;
+}
+
+.kTable .kTableLabel {
+	background: #e9f1fc;
+	text-align: right;
+	padding-right: 5px;
+}
+
+.kTable .kTableValue {
+	text-align: left;
+	padding: 0px 5px;
+}
+
+.kTable tr td {
+	height: 28px;
+	/*background:#fff; 对嵌套在表格内的 datagrid 的样式有影响*/
+	border-right: 1px #b9d5f6 solid;
+	border-bottom: 1px #b9d5f6 solid;
+	valign: middle;
+	align: left;
+}
+
+.kTable tr td textarea,select {
+	background-color: #red;
+	color: #000000;
+}
