@@ -19,7 +19,8 @@
 	<!-- <bean id="initData"  class="com.pactera.bprs.console.init.DataInitialzing"></bean> -->
 	
 	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-		<property name="prefix" value="/WEB-INF/pages/" />
+		<!-- <property name="prefix" value="/WEB-INF/" /> -->
+		<property name="prefix" value="/" />
 		<property name="suffix" value=".jsp" />
 		<property name="viewClass" value="org.springframework.web.servlet.view.JstlView" />
 	</bean>

@@ -17,6 +17,4 @@ public interface BaseMapper<T extends Serializable> {
 	
 	List<T> query();
 	
-	List<T> findByQueryCriteria(CriteriaQuery query);
-	
 }

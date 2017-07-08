@@ -1,1 +1,47 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.medical.mapper.UserMapper">
+
+<insert id="insert" parameterType="com.medical.entity.User" >
+	insert into user_medical values(
+		#{id,jdbcType=VARCHAR},
+		#{userName,jdbcType=VARCHAR},
+		#{password,jdbcType=VARCHAR},
+		#{email,jdbcType=VARCHAR},
+		#{roleId,jdbcType=INTEGER},
+		#{dynamicToken,jdbcType=VARCHAR}
+	)
+</insert>
+
+<select id="query" resultType="java.util.ArrayList" >
+	select * from user_medical;
+</select>
+
+<select id="login"  parameterType="String" resultType="com.medical.entity.User">
+	select * from user_medical where username=#{0} and password=#{1};
+</select>
+
+<select id="findByQueryCriteria" parameterType="com.medical.query.CriteriaQuery"  resultType="java.util.ArrayList" >
+	select * from user_medical where 
+</select>
+
+
+<update id="update" parameterType="com.medical.entity.User" >
+update user_medical set username=#{userName},
+				password=#{password},
+				email=#{email},
+				roleid=#{roleId},
+				dynamictoken=${dynamicToken}
+				where id=${id};
+</update>
+
+<delete id="delete" parameterType="java.lang.String">
+	delete from user_medical where id=#{id};
+</delete>
+
+
+</mapper>
+

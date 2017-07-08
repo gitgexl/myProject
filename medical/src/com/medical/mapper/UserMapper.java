@@ -1,10 +1,11 @@
 package com.medical.mapper;
 
-import org.springframework.stereotype.Repository;
+import org.mybatis.spring.annotation.MapperScan;
 
 import com.medical.entity.User;
 
-@Repository
+//@Repository
+@MapperScan
 public interface UserMapper extends BaseMapper<User>{
 
 	//@Insert("insert into user values(id=:id,username=:userName,password=:password,email=:email,roleid=:roleId,dynamictoken=:dynamicToken);")

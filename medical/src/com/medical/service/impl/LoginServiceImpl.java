@@ -1,5 +1,8 @@
 package com.medical.service.impl;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,7 +12,7 @@ import com.medical.entity.User;
 import com.medical.mapper.UserMapper;
 import com.medical.service.LoginService;
 
-@Service
+@Service("loginService")
 public class LoginServiceImpl implements LoginService {
 
 	
@@ -21,6 +24,10 @@ public class LoginServiceImpl implements LoginService {
 	
 	
 	public User login(String userName,String password) {
+		Map params = new HashMap();
+		params.put("userName", userName);
+		params.put("password", password);
+		
 		return userMapper.login(userName, password);
 	}
 }

@@ -7,7 +7,7 @@ import com.medical.query.CriteriaQuery;
 
 public interface BaseService<T extends Serializable> {
 
-	void setBaseMapper();
+	//void setBaseMapper();
 	
 	int insert(T t);
 	
@@ -16,7 +16,5 @@ public interface BaseService<T extends Serializable> {
 	int update(T t);
 	
 	List<T> query();
-	
-	List<T> findByQueryCriteria(CriteriaQuery query);
 	
 }
