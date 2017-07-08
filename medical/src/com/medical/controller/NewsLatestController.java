@@ -5,7 +5,9 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.websocket.server.PathParam;
 
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -27,6 +29,9 @@ import com.medical.service.NewsLatestService;
 @Controller
 public class NewsLatestController extends BaseController<NewsLatest>{
 
+	int pageNo = 1;
+	
+	int pageSize = 5;
 	
 	@Autowired
 	NewsLatestService newsLatestService;
@@ -36,16 +41,30 @@ public class NewsLatestController extends BaseController<NewsLatest>{
 		return "news_latest";
 	}
 	
+	@RequestMapping(value="news")
+	public String newsList(Model model, HttpServletRequest request) {
+		return "news/news_list";
+	}
+	
 	@RequestMapping("news_latest_list")
 	@ResponseBody
 	public String query(Page page,Model model,HttpServletRequest request) {
 		
 		Map queryParameters = new HashMap();
 		
+
 		//获取当前页数
-		int pageNo = Integer.parseInt(request.getParameter(EasyUIPageConstants.EASYUI_PAGE));
+		String pageNoString = request.getParameter(EasyUIPageConstants.EASYUI_PAGE);
+		String pageSizeString = request.getParameter(EasyUIPageConstants.EASYUI_PAGE_SIZE);
 		
-		int pageSize = Integer.parseInt(request.getParameter(EasyUIPageConstants.EASYUI_PAGE_SIZE));
+		if(StringUtils.isNotBlank(pageNoString)) {
+			
+			pageNo = Integer.parseInt(pageNoString);
+		}
+		if(StringUtils.isNotBlank(pageSizeString)) {
+			
+			pageSize = Integer.parseInt(pageSizeString);
+		}
 		
 		page.setPageNo(pageNo);
 		page.setPageSize(pageSize);
@@ -65,6 +84,51 @@ public class NewsLatestController extends BaseController<NewsLatest>{
 		return JSON.toJSONString(map);
 	}
 
+	
+	@RequestMapping("news_state")
+//	@ResponseBody
+	public String newsState(Page page,Model model,HttpServletRequest request) {
+		
+		Map queryParameters = new HashMap();
+		
+		
+		//获取当前页数
+		String pageNoString = request.getParameter(EasyUIPageConstants.EASYUI_PAGE);
+		String pageSizeString = request.getParameter(EasyUIPageConstants.EASYUI_PAGE_SIZE);
+		
+		if(StringUtils.isNotBlank(pageNoString)) {
+			
+			pageNo = Integer.parseInt(pageNoString);
+		}
+		if(StringUtils.isNotBlank(pageSizeString)) {
+			
+			pageSize = Integer.parseInt(pageSizeString);
+		}
+		
+		
+		page.setPageNo(pageNo);
+		page.setPageSize(pageSize);
+		page.setLimitParameter(pageNo);
+		
+//		page.setPageSize(5);
+//		int currentPageNo = 1;
+		queryParameters.put("page",page);
+		NewsLatest news = new NewsLatest();
+		queryParameters.put(NewsLatest.class.getSimpleName(), news);
+		List<NewsLatest> list = newsLatestService.findByCriteriaQuery(queryParameters);
+		long totalCount = newsLatestService.getCountNews(queryParameters);
+		page.caculatePageCount(pageSize, totalCount);
+		model.addAttribute("list", list);
+		model.addAttribute("page",page);
+		return "news_latest";
+	}
+	
+	@RequestMapping("queryNewsById")
+	public String queryNewsById(@PathParam(value = "id") int id,Model model,HttpServletRequest request) {
+		NewsLatest newsLatest = newsLatestService.queryNewsById(id);
+		model.addAttribute("newsLatest",newsLatest);
+		return "news/news_info";
+	}
 	
 	@Override
 	public int insert(NewsLatest t) {

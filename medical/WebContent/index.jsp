@@ -89,7 +89,7 @@
 		  		<a href="index" class="j-globalNavLink j-ui-elem " role="menuitem"><span class="nav-link">主页</span></a></li>
 		  		
 		  		<li id="customLink" aria-haspopup="true" class=" j-globalNav-li j-custom-link j-ui-elem">
-			  		<a href="news_latest" class="j-globalNavLink j-ui-elem " role="menuitem" target="ma">
+			  		<a href="news_state" class="j-globalNavLink j-ui-elem " role="menuitem" target="ma">
 			  			<span class="nav-link   j-ui-elem">新闻中心 <%-- <span class="j-nav-more jive-icon-glyph"><img src="${ctx}/resources/images/combo_arrow.png"/></span> --%>
 			  			</span>
 			  		</a>
@@ -139,7 +139,7 @@
 				  	<span class="nav-link j-ui-elem">管 理<span class="j-nav-more jive-icon-glyph"><img src="${ctx}/resources/images/combo_arrow.png"/></span></span></a>
 				  	<div id="customLink0-menu" class="j-pop-main j-menu j-quick-menu j-nav-menu-link-list" style="display: none;">
 				  		<ul>
-				  			<li><a id="customLink0-0" href="company_profile.html" class="j-ui-elem" target="ma"><span class="lnk">新闻管理</span></a></li>
+				  			<li><a id="customLink0-0" href="news" class="j-ui-elem" target="ma"><span class="lnk">新闻管理</span></a></li>
 			  				<li><a id="customLink0-1" href="contact_us.html" class="j-ui-elem" target="ma"><span class="lnk">产品管理</span></a></li>
 			  				<li><a id="customLink0-2" href="#" class="j-ui-elem" target="ma"><span class="lnk">器材管理</span></a></li>
 			  				<li><a id="customLink0-3" href="#" class="j-ui-elem" target="ma"><span class="lnk">用户管理</span></a></li>
@@ -178,7 +178,7 @@
   	
   	<!-- main body start  -->
 
-  	<iframe  name="ma" id="mm" style="width:100%;"  src="${ctx }/main.jsp"  frameborder="0" scrolling="no"  onload="setIframeHeight(this)" >
+  	<iframe  name="ma" id="mm" style="width:100%; height:760px"  src="${ctx }/main.jsp"  frameborder="0" scrolling="no"  onload="setIframeHeight(this)" >
   	</iframe>
   
   	<!-- main body end -->

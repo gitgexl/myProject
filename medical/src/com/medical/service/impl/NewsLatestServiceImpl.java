@@ -53,4 +53,8 @@ public class NewsLatestServiceImpl implements NewsLatestService{
 		return newsLatestMapper.getCountNews(queryParameters);
 	}
 	
+	public NewsLatest queryNewsById(Integer id) {
+		return newsLatestMapper.queryNewsById(id);
+	}
+	
 }

@@ -11,4 +11,5 @@ public interface NewsLatestMapper extends BaseMapper {
 	
 	public long getCountNews(Map queryParameters);
 
+	public NewsLatest queryNewsById(Integer id);
 }

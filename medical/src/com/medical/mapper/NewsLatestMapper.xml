@@ -16,8 +16,12 @@
  	</resultMap>	
 		
 	<select id="query" resultMap="newsLatestResultMap">
-		select * from news_lastest 
+		select * from news_latest 
 		<!--limit ${limitParameterOne},${limitParameterTwo}; -->
+	</select>
+	
+	<select id="queryNewsById" parameterType="Integer" resultMap="newsLatestResultMap">
+		select * from news_latest where id=#{id};
 	</select>
 	
 	<select id="findByCriteriaQuery" parameterType="java.util.Map" resultMap="newsLatestResultMap">
@@ -38,7 +42,8 @@
 		      </if>
 			</if>
 	      </where>
-	      limit ${page.limitParameterOne},${page.limitParameterTwo};
+	      order by news_date desc
+	      limit ${page.limitParameterOne},${page.pageSize};
 	</select>
 	
 	<select id="getCountNews" parameterType="java.util.Map" resultType="Long">

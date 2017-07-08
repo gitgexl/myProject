@@ -10,4 +10,6 @@ public interface NewsLatestService extends BaseService<NewsLatest>{
 	public List<NewsLatest> findByCriteriaQuery(Map queryParameters);
 	
 	public long getCountNews(Map queryParameters);
+	
+	public NewsLatest queryNewsById(Integer id);
 }
